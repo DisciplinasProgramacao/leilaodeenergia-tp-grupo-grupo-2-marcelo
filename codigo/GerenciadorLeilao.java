@@ -13,17 +13,22 @@ public class GerenciadorLeilao {
             List<Oferta> ofertas = LeitorDados.ofertas;
 
             // Executar a programação dinâmica
-            Resultado resultado = ProgramacaoDinamica.calcular(capacidade, ofertas);
+            Resultado programacaoDinamica = ProgramacaoDinamica.calcular(capacidade, ofertas);
+            exibirResultados("Resultados da Programação Dinâmica", programacaoDinamica);
 
-            // Exibir os resultados
-            System.out.println("Valor máximo que pode ser obtido: " + resultado.getValorMaximo());
-            System.out.println("Tempo de execução: " + resultado.getTempoExecucao() + " milissegundos");
-            System.out.println("Ofertas selecionadas:");
-            for (Oferta oferta : resultado.getOfertasSelecionadas()) {
-                System.out.println(oferta.nome + " comprou " + oferta.megawatts + " MW por " + oferta.valor + " dinheiros");
-            }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        
+    }
+
+    private static void exibirResultados(String titulo, Resultado resultado) {
+        System.out.println(titulo);
+        System.out.println("Valor máximo que pode ser obtido: " + resultado.getValorMaximo());
+        System.out.println("Tempo de execução: " + resultado.getTempoExecucao() + " milissegundos");
+        System.out.println("Ofertas selecionadas:");
+        for (Oferta oferta : resultado.getOfertasSelecionadas()) {
+            System.out.println(oferta.nome + " comprou " + oferta.megawatts + " MW por " + oferta.valor + " dinheiros");
         }
     }
 }
