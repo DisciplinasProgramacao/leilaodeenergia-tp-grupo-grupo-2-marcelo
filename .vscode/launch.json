@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "GerenciadorLeilao",
+            "request": "launch",
+            "mainClass": "codigo.GerenciadorLeilao",
+            "projectName": "leilaodeenergia-tp-grupo-grupo-2-marcelo_5bf9b55e"
+        },
+        {
+            "type": "java",
+            "name": "LeitorDados",
+            "request": "launch",
+            "mainClass": "codigo.LeitorDados",
+            "projectName": "leilaodeenergia-tp-grupo-grupo-2-marcelo_5bf9b55e"
+        }
+    ]
+}
