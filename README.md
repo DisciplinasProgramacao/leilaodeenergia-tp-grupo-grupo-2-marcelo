@@ -28,6 +28,7 @@ venda para as interessadas I3, I4 e I5, o valor total seria de 1.140 dinheiros, 
 ## Alunos integrantes da equipe
 
 * Lucas Machado de Oliveira Andrade
+* Marcelo Aguilar Araújo D'Almeida
 
 ## Professores responsáveis
 
