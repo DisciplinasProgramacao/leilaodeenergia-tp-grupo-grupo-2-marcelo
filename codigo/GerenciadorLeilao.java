@@ -28,7 +28,7 @@ public class GerenciadorLeilao {
         System.out.println("Tempo de execução: " + resultado.getTempoExecucao() + " milissegundos");
         System.out.println("Ofertas selecionadas:");
         for (Oferta oferta : resultado.getOfertasSelecionadas()) {
-            System.out.println(oferta.nome + " comprou " + oferta.megawatts + " MW por " + oferta.valor + " dinheiros");
+            System.out.println(oferta.getNome() + " comprou " + oferta.getMegawatts() + " MW por " + oferta.getValor() + " dinheiros");
         }
     }
 }

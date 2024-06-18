@@ -3,9 +3,9 @@ package codigo;
 import java.util.List;
 
 public class Resultado {
-    int valorMaximo;
-    List<Oferta> ofertasSelecionadas;
-    long tempoExecucao;
+    private int valorMaximo;
+    private List<Oferta> ofertasSelecionadas;
+    private long tempoExecucao;
 
     public Resultado(int valorMaximo, List<Oferta> ofertasSelecionadas, long tempoExecucao) {
         this.valorMaximo = valorMaximo;
@@ -17,11 +17,23 @@ public class Resultado {
         return valorMaximo;
     }
 
+    public void setValorMaximo(int valorMaximo) {
+        this.valorMaximo = valorMaximo;
+    }
+
     public List<Oferta> getOfertasSelecionadas() {
         return ofertasSelecionadas;
     }
 
+    public void setOfertasSelecionadas(List<Oferta> ofertasSelecionadas) {
+        this.ofertasSelecionadas = ofertasSelecionadas;
+    }
+
     public long getTempoExecucao() {
         return tempoExecucao;
+    }
+
+    public void setTempoExecucao(long tempoExecucao) {
+        this.tempoExecucao = tempoExecucao;
     }
 }
