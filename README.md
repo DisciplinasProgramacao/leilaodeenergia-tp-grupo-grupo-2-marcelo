@@ -1,17 +1,35 @@
-# Nome do projeto
-Escreva um ou dois parágrafos resumindo o objetivo do seu projeto.
+# Leilão de Energia
+
+Projetar solução para o processo abaixo utilizando:
+
+* Backtracking
+* Guloso
+* Divisão e Conquista
+* Programação Dinâmica
+
+Uma empresa produtora de energia possui uma quantidade X de energia, medida em megawatts, para vender. Seu objetivo
+é vender sua energia produzida, obtendo o maior valor possível no conjunto de suas vendas. As vendas serão realizadas
+por leilão: cada empresa interessada E dará um lance por um lote de K megawatts, oferecendo um valor V por este lote. As
+interessadas só comprarão um lote do tamanho exato da oferta.
+
+Por exemplo, suponha que a produtora tenha 1000 megawatts para venda e tenhamos os seguintes lances do leilão:
+
+* Interessada I1, 500 megawatts, 500 dinheiros
+* Interessada I2, 500 megawatts, 510 dinheiros
+* Interessada I3, 400 megawatts, 520 dinheiros
+* Interessada I4, 300 megawatts, 400 dinheiros
+* Interessada I5, 200 megawatts, 220 dinheiros
+* Interessada I6, 900 megawatts, 1.110 dinheiros
+
+Uma venda possível seria vender para as interessadas I1 e I2, com valor total de 1.010 dinheiros. Outra venda possível, com
+maior valor, seria para as interessadas I2, I4 e I5 com valor total de 1.130 dinheiros. Veja, por exemplo, que se for feita a
+venda para as interessadas I3, I4 e I5, o valor total seria de 1.140 dinheiros, mesmo sem vender toda a energia produzida.
 
 ## Alunos integrantes da equipe
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
-* Nome completo do aluno 4
-* Nome completo do aluno 4
+* Lucas Machado de Oliveira Andrade
 
 ## Professores responsáveis
 
-* Nome completo do professor 1
-* Nome completo do professor 2
+* João Caram
 
