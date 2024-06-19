@@ -27,10 +27,10 @@ venda para as interessadas I3, I4 e I5, o valor total seria de 1.140 dinheiros, 
 
 ## Alunos integrantes da equipe
 
-* Emmanuel Viglioni
-* Lucas Machado de Oliveira Andrade
-* Marcelo Aguilar Araújo D'Almeida
-* Paulo Victor Pimenta Rubinger
+* Emmanuel Viglioni (Divisão e Conquista)
+* Lucas Machado de Oliveira Andrade (Programação Dinâmica)
+* Marcelo Aguilar Araújo D'Almeida (Algorítmo Guloso)
+* Paulo Victor Pimenta Rubinger (Backtracking)
 
 ## Professores responsáveis
 

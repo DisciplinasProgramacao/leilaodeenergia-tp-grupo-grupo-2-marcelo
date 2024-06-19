@@ -1,5 +1,14 @@
 # Dados e relatórios sobre a implementação e resultados
 
+### Responsabilidades
+
+Aluno                               | Desenvolvimento
+----------------------------------- | -------------------------
+Emmanuel Viglioni                   | Divisão e Conquista
+Lucas Machado de Oliveira Andrade   | Programação Dinâmica
+Marcelo Aguilar Araújo D'Almeida    | Algorítmo Guloso
+Paulo Victor Pimenta Rubinger       | Backtracking
+
 ### Arquitetura utilizada
 
 Com o objetivo de centralizar os dados e calcular de forma coesa os valores obtidos para cada tipo de implementação foram gerados classes genéricas que auxiliam na obtenção dos resultados e são utilizadas para todas as técnicas de solução para o problema.
