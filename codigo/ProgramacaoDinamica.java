@@ -8,7 +8,7 @@ public class ProgramacaoDinamica {
     public static Resultado calcular(int capacidade, List<Oferta> ofertas) {
 
         // início tempo de execução
-        long inicio = System.currentTimeMillis();
+        long inicio = System.nanoTime();
 
         // tabela dinamica inicial do tamanho Ofertas x Capacidade máxima
         int[][] tabela = new int[ofertas.size() + 1][capacidade + 1];
@@ -22,7 +22,7 @@ public class ProgramacaoDinamica {
         List<Oferta> ofertasSelecionadas = buscarOfertasSelecionadas(tabela, capacidade, ofertas);
 
         // fim tempo de execução
-        long fim = System.currentTimeMillis();
+        long fim = System.nanoTime();
         // calculo tempo de execução
         long tempoExecucao = fim - inicio;
 
