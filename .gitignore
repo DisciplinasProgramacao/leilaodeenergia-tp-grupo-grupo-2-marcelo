@@ -33,6 +33,8 @@
 **/~*
 
 # C and other binaries
-**/*.exe
+**/*.exewq
 
 desktop.ini
+/out
+.idea
