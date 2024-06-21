@@ -8,6 +8,7 @@ public class GerenciadorLeilao {
     public static void main(String[] args) {
         try {
             long tempoTotalProgDinamica = 0;
+            long tempoTotalAlgGuloso1   = 0;
             // Ler os dados do arquivo
             LeitorDados.lerDados("codigo/dados/db.txt");
             for (int i = 0; i < LeitorDados.conjuntosTeste.size(); i++) {
@@ -15,9 +16,14 @@ public class GerenciadorLeilao {
 
                 // Executar a programação dinâmica
                 Resultado programacaoDinamica = ProgramacaoDinamica.calcular(conjunto.capacidadeTotal, conjunto.ofertas);
-                // exibirResultados("Resultados da Programação Dinâmica", programacaoDinamica);
-
+                exibirResultados("Resultados da Programação Dinâmica", programacaoDinamica);
                 tempoTotalProgDinamica += programacaoDinamica.getTempoExecucao();
+
+                // Executar o Algoritmo Guloso - Estratégia 1
+//                Resultado algoritmoGuloso1 = AlgoritmoGuloso1.calcular(conjunto.capacidadeTotal, conjunto.ofertas);
+//                exibirResultados("Resultados do Algoritmo Guloso - Estratégia 1", algoritmoGuloso1);
+//                tempoTotalAlgGuloso1 += algoritmoGuloso1.getTempoExecucao();
+
             }
             long mediaTempoExecucao = tempoTotalProgDinamica / LeitorDados.conjuntosTeste.size();
             System.out.println("\nMédia de tempo de execução: " + mediaTempoExecucao + " nanosegundos");
