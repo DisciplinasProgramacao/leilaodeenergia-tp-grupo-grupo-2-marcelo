@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "GerenciadorLeilao",
+            "request": "launch",
+            "mainClass": "codigo.GerenciadorLeilao",
+            "projectName": "leilaodeenergia-tp-grupo-grupo-2-marcelo_e5948805"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
