@@ -1,6 +1,8 @@
-package codigo;
+package codigo.algoritmos;
 
-import java.lang.reflect.Array;
+import codigo.entidades.Oferta;
+import codigo.entidades.Resultado;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
