@@ -10,6 +10,7 @@ public class LeitorDados {
     public static List<ConjuntoTeste> conjuntosTeste = new ArrayList<>();
 
     public static void lerDados(String caminhoArquivo) throws IOException {
+        conjuntosTeste.clear();
         System.out.println("Diretório de trabalho atual: " + Paths.get("").toAbsolutePath());
 
         List<String> linhas = Files.readAllLines(Paths.get(caminhoArquivo));

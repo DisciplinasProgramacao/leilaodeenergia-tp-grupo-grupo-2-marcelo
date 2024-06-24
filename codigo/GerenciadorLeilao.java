@@ -98,7 +98,7 @@ public class GerenciadorLeilao {
 
             if ((i + 1) % 10 == 0) {
                 double mediaTempoParcialExecucaoEmSegundos = ((double) tempoParcialExecucao / 10) / 1_000_000_000.0;
-                System.out.printf("\n%d Empresas - Média de tempo de execução: %.5f segundos\n", (i / 10) + 10, mediaTempoParcialExecucaoEmSegundos);
+                System.out.printf("\n%d Empresas - Média de tempo de execução: %.12f segundos\n", (i / 10) + 10, mediaTempoParcialExecucaoEmSegundos);
                 // Resetar o tempo parcial para o próximo conjunto de 10 execuções
                 tempoParcialExecucao = 0;
                 qtdConjuntos++;
@@ -106,7 +106,7 @@ public class GerenciadorLeilao {
         }
 
         double mediaTempoTotalExecucaoEmSegundos = ((double) tempoTotalExecucao / LeitorDados.conjuntosTeste.size()) / 1_000_000_000.0;
-        System.out.printf("\nMédia de tempo total de execução: %.5f segundos\n", mediaTempoTotalExecucaoEmSegundos);
+        System.out.printf("\nMédia de tempo total de execução: %.12f segundos\n", mediaTempoTotalExecucaoEmSegundos);
         System.out.println("Quantidade de conjuntos de teste: " + LeitorDados.conjuntosTeste.size());
         System.out.println("Quantidade de conjuntos de teste com 10 execuções: " + qtdConjuntos);
     }
