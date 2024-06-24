@@ -39,12 +39,13 @@ public class GerenciadorLeilao {
                 opcao = scanner.nextInt();
 
                 if (opcao >= 1 && opcao <= 5) {
-                    if (opcao == 2 ||  opcao == 3 || opcao == 4 || opcao == 5) {
-                        // Ler os dados do arquivo de teste específico
-                        LeitorDados.lerDados("codigo/dados/testBacktracking.txt");
-                    } else {
-                        LeitorDados.lerDados("codigo/dados/db.txt");
-                    }
+                    // if (opcao == 2 ||  opcao == 3 || opcao == 4 || opcao == 5) {
+                    //     // Ler os dados do arquivo de teste específico
+                    //     LeitorDados.lerDados("codigo/dados/testBacktracking.txt");
+                    // } else {
+                    //     LeitorDados.lerDados("codigo/dados/db.txt");
+                    // }
+                    LeitorDados.lerDados("codigo/dados/testeCaram.txt");
 
                     executarAlgoritmo(opcao);
                 } else if (opcao != 0) {
@@ -102,7 +103,7 @@ public class GerenciadorLeilao {
 
             tempoTotalExecucao += resultadoFinal.getTempoExecucao();
             tempoParcialExecucao += resultadoFinal.getTempoExecucao();
-//            exibirResultados(titulo, resultadoFinal);
+            exibirResultados(titulo, resultadoFinal);
 
             if ((i + 1) % 10 == 0) {
                 double mediaTempoParcialExecucaoEmSegundos = ((double) tempoParcialExecucao / 10) / 1_000_000_000.0;
