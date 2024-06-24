@@ -1,4 +1,4 @@
-package codigo.algoritmos;
+package codigo;
 
 import codigo.entidades.Oferta;
 import codigo.entidades.Resultado;
@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class AlgoritmoGuloso1 {
+public class AlgoritmoGuloso2 {
     
     public static Resultado calcular(int capacidade, List<Oferta> ofertas) {
 
@@ -21,11 +21,13 @@ public class AlgoritmoGuloso1 {
         // início tempo de execução
         long inicio = System.nanoTime();
 
-        // Ordenar os lances por valor total (V) em ordem decrescente
+        // Ordenar os lances por valor por megawatt (V/K) em ordem decrescente
         Collections.sort(ofertas, new Comparator<Oferta>() {
             @Override
             public int compare(Oferta o1, Oferta o2) {
-                return o2.getValor() - o1.getValor();
+                double v1 = (double) o1.getValor() /o1.getMegawatts();
+                double v2 = (double) o2.getValor() / o2.getMegawatts();
+                return Double.compare(v2, v1);
             }
         });
 
