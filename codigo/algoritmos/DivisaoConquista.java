@@ -17,7 +17,7 @@ public class DivisaoConquista {
 
     /**
      * Método principal para calcular o valor máximo das ofertas selecionadas
-     * que não excedem a capacidade total.
+     * que não excedem a capacidade total. Iremos utilizar memoização para evitar recalculações.
      *
      * @param capacidadeTotal A capacidade total disponível.
      * @param ofertas A lista de ofertas disponíveis.
@@ -28,6 +28,7 @@ public class DivisaoConquista {
         long inicio = System.nanoTime();
 
         // Ordenar ofertas pelo valor por megawatt (decrescente)
+        // Está sendo multiplicado por -1 para inverter a ordem
         ofertas.sort(Comparator.comparingDouble(o -> -1.0 * o.getValor() / o.getMegawatts()));
 
         // Inicializar a lista de ofertas selecionadas

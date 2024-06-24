@@ -22,11 +22,9 @@ public class GerenciadorLeilao {
      */
     public static void main(String[] args) {
         try {
-            // Ler os dados do arquivo
-            LeitorDados.lerDados("codigo/dados/db.txt");
-
             Scanner scanner = new Scanner(System.in);
             int opcao;
+
 
             do {
                 // Menu de seleção do algoritmo
@@ -39,6 +37,13 @@ public class GerenciadorLeilao {
                 opcao = scanner.nextInt();
 
                 if (opcao >= 1 && opcao <= 4) {
+                    if (opcao == 2 || opcao == 4) {
+                        // Ler os dados do arquivo de teste específico
+                        LeitorDados.lerDados("codigo/dados/testBacktracking.txt");
+                    } else {
+                        LeitorDados.lerDados("codigo/dados/db.txt");
+                    }
+
                     executarAlgoritmo(opcao);
                 } else if (opcao != 0) {
                     System.out.println("Opção inválida. Por favor, selecione uma opção válida.");
@@ -57,12 +62,16 @@ public class GerenciadorLeilao {
      * @param opcao O algoritmo selecionado. 1 para Programação Dinâmica, 2 para Divisão e Conquista, 3 para Algoritmo Guloso, e 4 para Backtracking.
      */
     private static void executarAlgoritmo(int opcao) {
+
         Resultado resultadoFinal;
         String titulo;
         long tempoTotalExecucao = 0;
+        long tempoParcialExecucao = 0;
+        int qtdConjuntos = 0;
 
         for (int i = 0; i < LeitorDados.conjuntosTeste.size(); i++) {
             LeitorDados.ConjuntoTeste conjunto = LeitorDados.conjuntosTeste.get(i);
+
             titulo = switch (opcao) {
                 case 1 -> {
                     resultadoFinal = ProgramacaoDinamica.calcular(conjunto.capacidadeTotal, conjunto.ofertas);
@@ -84,11 +93,22 @@ public class GerenciadorLeilao {
             };
 
             tempoTotalExecucao += resultadoFinal.getTempoExecucao();
-            exibirResultados(titulo, resultadoFinal);
+            tempoParcialExecucao += resultadoFinal.getTempoExecucao();
+//            exibirResultados(titulo, resultadoFinal);
+
+            if ((i + 1) % 10 == 0) {
+                double mediaTempoParcialExecucaoEmSegundos = ((double) tempoParcialExecucao / 10) / 1_000_000_000.0;
+                System.out.printf("\n%d Empresas - Média de tempo de execução: %.5f segundos\n", (i / 10) + 10, mediaTempoParcialExecucaoEmSegundos);
+                // Resetar o tempo parcial para o próximo conjunto de 10 execuções
+                tempoParcialExecucao = 0;
+                qtdConjuntos++;
+            }
         }
 
-        double mediaTempoExecucaoEmSegundos = (double) tempoTotalExecucao / LeitorDados.conjuntosTeste.size() / 1_000_000_000.0;
-        System.out.printf("\nMédia de tempo de execução: %.5f segundos\n", mediaTempoExecucaoEmSegundos);
+        double mediaTempoTotalExecucaoEmSegundos = ((double) tempoTotalExecucao / LeitorDados.conjuntosTeste.size()) / 1_000_000_000.0;
+        System.out.printf("\nMédia de tempo total de execução: %.5f segundos\n", mediaTempoTotalExecucaoEmSegundos);
+        System.out.println("Quantidade de conjuntos de teste: " + LeitorDados.conjuntosTeste.size());
+        System.out.println("Quantidade de conjuntos de teste com 10 execuções: " + qtdConjuntos);
     }
 
     /**
