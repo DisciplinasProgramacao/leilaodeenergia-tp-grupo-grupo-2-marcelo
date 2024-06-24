@@ -39,13 +39,12 @@ public class GerenciadorLeilao {
                 opcao = scanner.nextInt();
 
                 if (opcao >= 1 && opcao <= 5) {
-                    // if (opcao == 2 ||  opcao == 3 || opcao == 4 || opcao == 5) {
-                    //     // Ler os dados do arquivo de teste específico
-                    //     LeitorDados.lerDados("codigo/dados/testBacktracking.txt");
-                    // } else {
-                    //     LeitorDados.lerDados("codigo/dados/dbGuloso.txt");
-                    // }
-                    LeitorDados.lerDados("codigo/dados/testeCaram.txt");
+                    if (opcao == 2 || opcao == 5) {
+                        // Ler os dados do arquivo de teste específico
+                        LeitorDados.lerDados("codigo/dados/testBacktracking.txt");
+                    } else {
+                        LeitorDados.lerDados("codigo/dados/testeGuloso.txt");
+                    }
 
                     executarAlgoritmo(opcao);
                 } else if (opcao != 0) {
