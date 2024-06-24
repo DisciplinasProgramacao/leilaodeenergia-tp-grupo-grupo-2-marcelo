@@ -106,7 +106,11 @@ public class GerenciadorLeilao {
 
             if ((i + 1) % 10 == 0) {
                 double mediaTempoParcialExecucaoEmMilissegundos = ((double) tempoParcialExecucao / 10) / 1_000_000.0;
-                System.out.printf("\n%d Empresas - Média de tempo de execução: %.12f milissegundos\n", (i / 10) + 10, mediaTempoParcialExecucaoEmMilissegundos);
+                int qtdEmpresas = ((i / 10) + 1) * 33;
+                if(opcao == 2 || opcao == 5){
+                    qtdEmpresas = (i / 10) + 10;
+                }
+                System.out.printf("\n%d Empresas - Média de tempo de execução: %.12f milissegundos\n", qtdEmpresas, mediaTempoParcialExecucaoEmMilissegundos);
                 // Resetar o tempo parcial para o próximo conjunto de 10 execuções
                 tempoParcialExecucao = 0;
                 qtdConjuntos++;
