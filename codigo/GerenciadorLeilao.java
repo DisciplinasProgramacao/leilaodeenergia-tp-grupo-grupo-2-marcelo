@@ -1,6 +1,7 @@
 package codigo;
 
 import codigo.algoritmos.AlgoritmoGuloso1;
+import codigo.algoritmos.AlgoritmoGuloso2;
 import codigo.algoritmos.Backtracking;
 import codigo.algoritmos.DivisaoConquista;
 import codigo.algoritmos.ProgramacaoDinamica;
@@ -31,13 +32,14 @@ public class GerenciadorLeilao {
                 System.out.println("\nSelecione o algoritmo que deseja usar:");
                 System.out.println("1. Programação Dinâmica");
                 System.out.println("2. Divisão e Conquista");
-                System.out.println("3. Algoritmo Guloso");
-                System.out.println("4. Backtracking");
+                System.out.println("3. Algoritmo Guloso - Estratégia 1");
+                System.out.println("4. Algoritmo Guloso - Estratégia 2");
+                System.out.println("5. Backtracking");
                 System.out.println("0. Sair");
                 opcao = scanner.nextInt();
 
-                if (opcao >= 1 && opcao <= 4) {
-                    if (opcao == 2 || opcao == 4) {
+                if (opcao >= 1 && opcao <= 5) {
+                    if (opcao == 2 ||  opcao == 3 || opcao == 4 || opcao == 5) {
                         // Ler os dados do arquivo de teste específico
                         LeitorDados.lerDados("codigo/dados/testBacktracking.txt");
                     } else {
@@ -83,9 +85,15 @@ public class GerenciadorLeilao {
                 }
                 case 3 -> {
                     resultadoFinal = AlgoritmoGuloso1.calcular(conjunto.capacidadeTotal, conjunto.ofertas);
-                    yield "Resultados do Algoritmo Guloso";
+                    yield "Resultados do Algoritmo Guloso - Estratégia 1 ";
                 }
+
                 case 4 -> {
+                    resultadoFinal = AlgoritmoGuloso2.calcular(conjunto.capacidadeTotal, conjunto.ofertas);
+                    yield "Resultados do Algoritmo Guloso - Estratégia 2 ";
+                }
+
+                case 5 -> {
                     resultadoFinal = Backtracking.calcular(conjunto.capacidadeTotal, conjunto.ofertas);
                     yield "Resultados do Algoritmo de Backtracking";
                 }
