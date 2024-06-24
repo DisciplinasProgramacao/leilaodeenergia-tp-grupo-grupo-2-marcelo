@@ -1,4 +1,4 @@
-package codigo;
+package codigo.entidades;
 
 public class Oferta {
     private String nome;
@@ -9,6 +9,15 @@ public class Oferta {
         this.nome = nome;
         this.megawatts = megawatts;
         this.valor = valor;
+    }
+
+    @Override
+    public String toString() {
+        return "Oferta{" +
+                "nome='" + nome + '\'' +
+                ", megawatts=" + megawatts +
+                ", valor=" + valor +
+                '}';
     }
 
     public String getNome() {

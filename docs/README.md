@@ -134,3 +134,27 @@ Quantidade de Ofertas   | Tempo execução (microsegundos)
 800                     | 4033
 900                     | 9997
 1000                    | 17471
+
+
+### Algoritmo Guloso - Estratégia 1
+
+O algoritmo inicialmente faz o inicio da conta do tempo de execução.
+
+Depois disso, ofertas são ordenadas em ordem decrescente de valor. Essa ordenação garante que as ofertas de maior valor sejam consideradas primeiro pelo algoritmo guloso. Após a ordenação, o algoritmo percorre a lista de ofertas ordenadas, verificando para cada oferta se a capacidade restante é suficiente para aceitar a oferta.
+
+Se a capacidade permitir, a oferta é adicionada à lista ofertasSelecionadas, a capacidade disponível é reduzida pelo valor de megawatts da oferta, e o valor da oferta é adicionado ao valorTotal.
+
+Após percorrer todas as ofertas, o algoritmo registra o tempo final de execução e calcula a diferença para determinar o tempo total de execução. Finalmente, o algoritmo retorna um objeto Resultado que contém o valorTotal, a lista de ofertas selecionadas e o tempo de execução.
+
+![](./imgs/algoritmoGulosoE1.png)
+
+
+### Algoritmo Guloso - Estratégia 2
+
+Para a segunda estratégia, foi optada a ordenação das ofertas de energia com base no valor por megawatt (V/MW) em ordem decrescente. Isso significa que as ofertas mais valiosas por unidade de energia são consideradas primeiro.
+
+Para cada oferta na lista ordenada, o algoritmo verifica se a capacidade restante é suficiente para incluir a oferta. Se for, a oferta é adicionada à lista de lances selecionados, a capacidade disponível é reduzida pela quantidade de megawatts da oferta, e o valor total é aumentado pelo valor da oferta. Esse processo continua até que todas as ofertas tenham sido consideradas ou a capacidade esteja esgotada.
+
+Após percorrer todas as ofertas, o algoritmo registra o tempo de fim e calcula o tempo de execução. Finalmente, retorna um objeto Resultado, contendo o valor total acumulado, a lista de ofertas selecionadas e o tempo de execução.
+
+![](./imgs/algoritmoGulosoE2.png)

@@ -1,53 +1,102 @@
 package codigo;
 
-import java.io.IOException;
+import codigo.algoritmos.AlgoritmoGuloso1;
+import codigo.algoritmos.Backtracking;
+import codigo.algoritmos.DivisaoConquista;
+import codigo.algoritmos.ProgramacaoDinamica;
+import codigo.utilitarios.LeitorDados;
+import codigo.entidades.Oferta;
+import codigo.entidades.Resultado;
 
+import java.io.IOException;
+import java.util.Scanner;
+
+/**
+ * Esta classe gerencia a execução de diferentes algoritmos para o problema do leilão.
+ */
 public class GerenciadorLeilao {
 
+    /**
+     * O método principal da classe. Ele lê dados de um arquivo, apresenta um menu ao usuário para selecionar um algoritmo,
+     * e executa o algoritmo selecionado.
+     */
     public static void main(String[] args) {
         try {
-            long tempoTotalProgDinamica = 0;
-            long tempoTotalAlgGuloso1   = 0;
-            long tempoTotalBacktracking = 0;
-
-            long tempoTotalAlgGuloso2   = 0;
             // Ler os dados do arquivo
-            // LeitorDados.lerDados("codigo/dados/db.txt");
-            LeitorDados.lerDados("codigo/dados/testBacktracking.txt");
+            LeitorDados.lerDados("codigo/dados/db.txt");
 
-            for (int i = 0; i < LeitorDados.conjuntosTeste.size(); i++) {
-                LeitorDados.ConjuntoTeste conjunto = LeitorDados.conjuntosTeste.get(i);
+            Scanner scanner = new Scanner(System.in);
+            int opcao;
 
-                // Executar a programação dinâmica
-//                // Resultado programacaoDinamica = ProgramacaoDinamica.calcular(conjunto.capacidadeTotal, conjunto.ofertas);
-//                // exibirResultados("Resultados da Programação Dinâmica", programacaoDinamica);
-//                // tempoTotalProgDinamica += programacaoDinamica.getTempoExecucao();
+            do {
+                // Menu de seleção do algoritmo
+                System.out.println("\nSelecione o algoritmo que deseja usar:");
+                System.out.println("1. Programação Dinâmica");
+                System.out.println("2. Divisão e Conquista");
+                System.out.println("3. Algoritmo Guloso");
+                System.out.println("4. Backtracking");
+                System.out.println("0. Sair");
+                opcao = scanner.nextInt();
 
-                // Executar o Algoritmo Guloso - Estratégia 1 - Ordenando por valores das ofertas de forma decrescente
-//                Resultado algoritmoGuloso1 = AlgoritmoGuloso1.calcular(conjunto.capacidadeTotal, conjunto.ofertas);
-//                exibirResultados("Resultados do Algoritmo Guloso - Estratégia 1", algoritmoGuloso1);
-//                tempoTotalAlgGuloso1 += algoritmoGuloso1.getTempoExecucao();
+                if (opcao >= 1 && opcao <= 4) {
+                    executarAlgoritmo(opcao);
+                } else if (opcao != 0) {
+                    System.out.println("Opção inválida. Por favor, selecione uma opção válida.");
+                }
+            } while (opcao != 0);
 
-                // Executar o backtracking
-                Resultado backtracking = Backtracking.calcular(conjunto.capacidadeTotal, conjunto.ofertas);
-                exibirResultados("Resultados do Algoritmo de Backtracking", backtracking);
-                tempoTotalBacktracking += backtracking.getTempoExecucao();
-
-//                 Executar o Algoritmo Guloso - Estratégia 2 - Ordenando pelo valor do megawatt de forma decrescente
-                Resultado algoritmoGuloso2 = AlgoritmoGuloso2.calcular(conjunto.capacidadeTotal, conjunto.ofertas);
-                exibirResultados("Resultados do Algoritmo Guloso - Estratégia 2", algoritmoGuloso2);
-                tempoTotalAlgGuloso2 += algoritmoGuloso2.getTempoExecucao();
-
-            }
-            long mediaTempoExecucao = tempoTotalBacktracking / LeitorDados.conjuntosTeste.size();
-            System.out.println("\nMédia de tempo de execução: " + mediaTempoExecucao + " nanosegundos");
-
+            System.out.println("Encerrando o programa...");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
     }
 
+    /**
+     * Executa o algoritmo selecionado e exibe os resultados.
+     *
+     * @param opcao O algoritmo selecionado. 1 para Programação Dinâmica, 2 para Divisão e Conquista, 3 para Algoritmo Guloso, e 4 para Backtracking.
+     */
+    private static void executarAlgoritmo(int opcao) {
+        Resultado resultadoFinal;
+        String titulo;
+        long tempoTotalExecucao = 0;
+
+        for (int i = 0; i < LeitorDados.conjuntosTeste.size(); i++) {
+            LeitorDados.ConjuntoTeste conjunto = LeitorDados.conjuntosTeste.get(i);
+            titulo = switch (opcao) {
+                case 1 -> {
+                    resultadoFinal = ProgramacaoDinamica.calcular(conjunto.capacidadeTotal, conjunto.ofertas);
+                    yield "Resultados da Programação Dinâmica";
+                }
+                case 2 -> {
+                    resultadoFinal = DivisaoConquista.calcular(conjunto.capacidadeTotal, conjunto.ofertas);
+                    yield "Resultados da Divisão e Conquista";
+                }
+                case 3 -> {
+                    resultadoFinal = AlgoritmoGuloso1.calcular(conjunto.capacidadeTotal, conjunto.ofertas);
+                    yield "Resultados do Algoritmo Guloso";
+                }
+                case 4 -> {
+                    resultadoFinal = Backtracking.calcular(conjunto.capacidadeTotal, conjunto.ofertas);
+                    yield "Resultados do Algoritmo de Backtracking";
+                }
+                default -> throw new IllegalArgumentException("Opção inválida: " + opcao);
+            };
+
+            tempoTotalExecucao += resultadoFinal.getTempoExecucao();
+            exibirResultados(titulo, resultadoFinal);
+        }
+
+        double mediaTempoExecucaoEmSegundos = (double) tempoTotalExecucao / LeitorDados.conjuntosTeste.size() / 1_000_000_000.0;
+        System.out.printf("\nMédia de tempo de execução: %.5f segundos\n", mediaTempoExecucaoEmSegundos);
+    }
+
+    /**
+     * Exibe os resultados da execução do algoritmo.
+     *
+     * @param titulo    O título dos resultados.
+     * @param resultado Os resultados da execução do algoritmo.
+     */
     private static void exibirResultados(String titulo, Resultado resultado) {
         System.out.println(titulo);
         System.out.println("Valor máximo que pode ser obtido: " + resultado.getValorMaximo());

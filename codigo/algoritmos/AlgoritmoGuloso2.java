@@ -1,4 +1,7 @@
-package codigo;
+package codigo.algoritmos;
+
+import codigo.entidades.Oferta;
+import codigo.entidades.Resultado;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,7 +16,7 @@ public class AlgoritmoGuloso2 {
         int valorTotal = 0;
 
         // Iniciando arraylist de ofertas
-        ArrayList<Oferta> lancesSelecionados = new ArrayList<Oferta>();
+        ArrayList<Oferta> ofertasSelecionadas = new ArrayList<Oferta>();
 
         // início tempo de execução
         long inicio = System.nanoTime();
@@ -31,7 +34,7 @@ public class AlgoritmoGuloso2 {
         // For para percorrer todas as ofertas ordenadas e adicionar ao nosso ArrayList
         for (Oferta oferta : ofertas){
            if (oferta.getMegawatts() <= capacidade){
-               lancesSelecionados.add(oferta);
+               ofertasSelecionadas.add(oferta);
                capacidade -= oferta.getMegawatts();
                valorTotal += oferta.getValor();
            }
@@ -43,6 +46,6 @@ public class AlgoritmoGuloso2 {
         long tempoExecucao = fim - inicio;
 
         // Retorna resultado final com todos os dados
-        return new Resultado(valorTotal, lancesSelecionados, tempoExecucao);
+        return new Resultado(valorTotal, ofertasSelecionadas, tempoExecucao);
     }
 }

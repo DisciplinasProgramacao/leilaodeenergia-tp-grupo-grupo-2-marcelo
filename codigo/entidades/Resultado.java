@@ -1,4 +1,4 @@
-package codigo;
+package codigo.entidades;
 
 import java.util.List;
 
@@ -12,6 +12,12 @@ public class Resultado {
         this.ofertasSelecionadas = ofertasSelecionadas;
         this.tempoExecucao = tempoExecucao;
     }
+
+    public Resultado(int valorMaximo, List<Oferta> ofertasSelecionadas) {
+        this.valorMaximo = valorMaximo;
+        this.ofertasSelecionadas = ofertasSelecionadas;
+    }
+
 
     public int getValorMaximo() {
         return valorMaximo;

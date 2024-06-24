@@ -1,4 +1,6 @@
-package codigo;
+package codigo.utilitarios;
+
+import codigo.entidades.Oferta;
 
 import java.io.IOException;
 import java.nio.file.*;
@@ -8,7 +10,7 @@ public class LeitorDados {
     public static List<ConjuntoTeste> conjuntosTeste = new ArrayList<>();
 
     public static void lerDados(String caminhoArquivo) throws IOException {
-        System.out.println("Diretório de trabalho atual: " + Paths.get("").toAbsolutePath().toString());
+        System.out.println("Diretório de trabalho atual: " + Paths.get("").toAbsolutePath());
 
         List<String> linhas = Files.readAllLines(Paths.get(caminhoArquivo));
         List<Oferta> ofertas = new ArrayList<>();
