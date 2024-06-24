@@ -9,6 +9,13 @@
             "name": "GerenciadorLeilao",
             "request": "launch",
             "mainClass": "codigo.GerenciadorLeilao",
+            "projectName": "leilaodeenergia-tp-grupo-grupo-2-marcelo_f661572c"
+        },
+        {
+            "type": "java",
+            "name": "GerenciadorLeilao",
+            "request": "launch",
+            "mainClass": "codigo.GerenciadorLeilao",
             "projectName": "leilaodeenergia-tp-grupo-grupo-2-marcelo_e5948805"
         },
         {

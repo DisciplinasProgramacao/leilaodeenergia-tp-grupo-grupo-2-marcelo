@@ -12,7 +12,7 @@ public class GerenciadorLeilao {
 
             // Ler os dados do arquivo
             // LeitorDados.lerDados("codigo/dados/db.txt");
-            LeitorDados.lerDados("codigo/dados/test.txt");
+            LeitorDados.lerDados("codigo/dados/testBacktracking.txt");
 
             for (int i = 0; i < LeitorDados.conjuntosTeste.size(); i++) {
                 LeitorDados.ConjuntoTeste conjunto = LeitorDados.conjuntosTeste.get(i);
@@ -33,7 +33,7 @@ public class GerenciadorLeilao {
                 tempoTotalBacktracking += backtracking.getTempoExecucao();
 
             }
-            long mediaTempoExecucao = tempoTotalProgDinamica / LeitorDados.conjuntosTeste.size();
+            long mediaTempoExecucao = tempoTotalBacktracking / LeitorDados.conjuntosTeste.size();
             System.out.println("\nMédia de tempo de execução: " + mediaTempoExecucao + " nanosegundos");
 
         } catch (IOException e) {
