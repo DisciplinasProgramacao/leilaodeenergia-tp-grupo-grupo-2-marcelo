@@ -1,4 +1,7 @@
-package codigo;
+package codigo.algoritmos;
+
+import codigo.entidades.Oferta;
+import codigo.entidades.Resultado;
 
 import java.util.ArrayList;
 import java.util.Collections;
