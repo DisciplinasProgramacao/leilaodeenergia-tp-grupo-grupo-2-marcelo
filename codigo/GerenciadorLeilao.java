@@ -43,7 +43,7 @@ public class GerenciadorLeilao {
                     //     // Ler os dados do arquivo de teste específico
                     //     LeitorDados.lerDados("codigo/dados/testBacktracking.txt");
                     // } else {
-                    //     LeitorDados.lerDados("codigo/dados/db.txt");
+                    //     LeitorDados.lerDados("codigo/dados/dbGuloso.txt");
                     // }
                     LeitorDados.lerDados("codigo/dados/testeCaram.txt");
 
@@ -103,19 +103,19 @@ public class GerenciadorLeilao {
 
             tempoTotalExecucao += resultadoFinal.getTempoExecucao();
             tempoParcialExecucao += resultadoFinal.getTempoExecucao();
-            exibirResultados(titulo, resultadoFinal);
+            // exibirResultados(titulo, resultadoFinal);
 
             if ((i + 1) % 10 == 0) {
-                double mediaTempoParcialExecucaoEmSegundos = ((double) tempoParcialExecucao / 10) / 1_000_000_000.0;
-                System.out.printf("\n%d Empresas - Média de tempo de execução: %.12f segundos\n", (i / 10) + 10, mediaTempoParcialExecucaoEmSegundos);
+                double mediaTempoParcialExecucaoEmMilissegundos = ((double) tempoParcialExecucao / 10) / 1_000_000.0;
+                System.out.printf("\n%d Empresas - Média de tempo de execução: %.12f milissegundos\n", (i / 10) + 10, mediaTempoParcialExecucaoEmMilissegundos);
                 // Resetar o tempo parcial para o próximo conjunto de 10 execuções
                 tempoParcialExecucao = 0;
                 qtdConjuntos++;
             }
         }
 
-        double mediaTempoTotalExecucaoEmSegundos = ((double) tempoTotalExecucao / LeitorDados.conjuntosTeste.size()) / 1_000_000_000.0;
-        System.out.printf("\nMédia de tempo total de execução: %.12f segundos\n", mediaTempoTotalExecucaoEmSegundos);
+        double mediaTempoTotalExecucaoEmMilissegundos = ((double) tempoTotalExecucao / LeitorDados.conjuntosTeste.size()) / 1_000_000.0;
+        System.out.printf("\nMédia de tempo total de execução: %.12f milissegundos\n", mediaTempoTotalExecucaoEmMilissegundos);
         System.out.println("Quantidade de conjuntos de teste: " + LeitorDados.conjuntosTeste.size());
         System.out.println("Quantidade de conjuntos de teste com 10 execuções: " + qtdConjuntos);
     }
