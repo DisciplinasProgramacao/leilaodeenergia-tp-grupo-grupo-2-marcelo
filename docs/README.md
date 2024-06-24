@@ -60,6 +60,94 @@ O gerenciador inicialmente realiza a leitura dos dados no db.txt e gera uma inte
 
 Dentro dessa interação, é chamado o cálculo de cada método de solução para o problema, que irá receber as informações de capacidade total e ofertas, existentes no conjunto. Esses métodos devem retornar a classe Resultado como resposta, que pode ser visualizada de forma detalhada no método exibirResultados.
 
+### Exemplo teste
+
+**Primeira base de dados:**
+
+EMPRESA | QUANTIDADE    | VALOR
+------- | ------------- | -----
+E1      | 430           | 1043
+E2      | 428           | 1188
+E3      | 410           | 1565
+E4      | 385           | 1333
+E5      | 399           | 1214
+E6      | 382           | 1498
+E7      | 416           | 1540
+E8      | 436           | 1172
+E9      | 416           | 1386
+E10     | 423           | 1097
+E11     | 400           | 1463
+E12     | 406           | 1353
+E13     | 403           | 1568
+E14     | 390           | 1228
+E15     | 387           | 1542
+E16     | 390           | 1206
+E17     | 430           | 1175
+E18     | 397           | 1492
+E19     | 392           | 1293
+E20     | 393           | 1533
+E21     | 439           | 1149
+E22     | 403           | 1277
+E23     | 415           | 1624
+E24     | 387           | 1280
+E25     | 417           | 1330
+
+**Segunda base de dados:**
+
+EMPRESA | QUANTIDADE    | VALOR
+------- | ------------- | -----
+E1      | 430           | 1043
+E2      | 428           | 1188
+E3      | 410           | 1565
+E4      | 385           | 1333
+E5      | 399           | 1214
+E6      | 382           | 1498
+E7      | 416           | 1540
+E8      | 436           | 1172
+E9      | 416           | 1386
+E10     | 423           | 1097
+E11     | 400           | 1463
+E12     | 406           | 1353
+E13     | 403           | 1568
+E14     | 390           | 1228
+E15     | 387           | 1542
+E16     | 390           | 1206
+E17     | 430           | 1175
+E18     | 397           | 1492
+E19     | 392           | 1293
+E20     | 393           | 1533
+E21     | 439           | 1149
+E22     | 403           | 1277
+E23     | 415           | 1624
+E24     | 387           | 1280
+E25     | 417           | 1330
+E1      | 313            | 1496
+E2      | 398            | 1768
+E3      | 240            | 1210
+E4      | 433            | 2327
+E5      | 301            | 1263
+E6      | 297            | 1499
+E7      | 232            | 1209
+E8      | 614            | 2342
+E9      | 558            | 2983
+E10     | 495            | 2259
+E11     | 310            | 1381
+E12     | 213            | 961
+E13     | 213            | 1115
+E14     | 346            | 1552
+E15     | 385            | 2023
+E16     | 240            | 1234
+E17     | 483            | 2828
+E18     | 487            | 2617
+E19     | 709            | 2328
+E20     | 358            | 1847
+E21     | 467            | 2038
+E22     | 363            | 2007
+E23     | 279            | 1311
+E24     | 589            | 3164
+E25     | 476            | 2480
+
+
 ### Programação Dinâmica
 
 #### Método geral
@@ -111,13 +199,56 @@ Nesse caso, o novo valorTabela obtido pela retirada da oferta também poderia se
 
 #### Resultados Problema Exemplo
 
-A solução encontrada Para o problema exemplo foi de 1140 dinheiros com as ofertas de I5, I4 e I3, totalizando a compra de 900 megawatts.
-Para esse caso, a solução foi obtida em 37 microsegundos
-
 O problema quando verificado a solução, é solucionado pela programação dinâmica em duas etapas.
 A primeira etapa está relacionada com o preenchimento da tabela que ocorre n * m interações, sendo n a quantidade de ofertas e m o valor de limite de venda de megawatts, ou seja, nesse caso em que há 6 ofertas e 1000 de limite, há uma performance pior do que seria para n^2 interações. Mas com o aumento da quantiade de ofertas e a manutenção do limite, o comportamente se assemelha a uma interação linear de n interações.
 
 A segunda etapa ocorre na busca pelos dados, que no pior caso, realiza n operações, sendo uma para cada oferta.
+
+Para a primeira base de dados, com 25 registros e 8000 de capacidade, houve tempo de execução médio de 2 milisegundos, obteve-se como resultados as empresas abaixo, com solução final de 26725 dinheiros:
+
+E25 comprou 417 MW por 1330 dinheiros
+E24 comprou 387 MW por 1280 dinheiros
+E23 comprou 415 MW por 1624 dinheiros
+E22 comprou 403 MW por 1277 dinheiros
+E20 comprou 393 MW por 1533 dinheiros
+E19 comprou 392 MW por 1293 dinheiros
+E18 comprou 397 MW por 1492 dinheiros
+E16 comprou 390 MW por 1206 dinheiros
+E15 comprou 387 MW por 1542 dinheiros
+E14 comprou 390 MW por 1228 dinheiros
+E13 comprou 403 MW por 1568 dinheiros
+E12 comprou 406 MW por 1353 dinheiros
+E11 comprou 400 MW por 1463 dinheiros
+E9 comprou 416 MW por 1386 dinheiros
+E7 comprou 416 MW por 1540 dinheiros
+E6 comprou 382 MW por 1498 dinheiros
+E5 comprou 399 MW por 1214 dinheiros
+E4 comprou 385 MW por 1333 dinheiros
+E3 comprou 410 MW por 1565 dinheiros
+
+Para a segunda base de dados, com 50 registros e 8000 de capacidade, houve tempo de execução médio de 3 milisegundos, obteve-se como resultados as empresas abaixo, com solução final de 40348 dinheiros:
+
+E25 comprou 476 MW por 2480 dinheiros
+E24 comprou 589 MW por 3164 dinheiros
+E23 comprou 279 MW por 1311 dinheiros
+E22 comprou 363 MW por 2007 dinheiros
+E21 comprou 467 MW por 2038 dinheiros
+E20 comprou 358 MW por 1847 dinheiros
+E18 comprou 487 MW por 2617 dinheiros
+E17 comprou 483 MW por 2828 dinheiros
+E16 comprou 240 MW por 1234 dinheiros
+E15 comprou 385 MW por 2023 dinheiros
+E14 comprou 346 MW por 1552 dinheiros
+E13 comprou 213 MW por 1115 dinheiros
+E11 comprou 310 MW por 1381 dinheiros
+E10 comprou 495 MW por 2259 dinheiros
+E9 comprou 558 MW por 2983 dinheiros
+E7 comprou 232 MW por 1209 dinheiros
+E6 comprou 297 MW por 1499 dinheiros
+E4 comprou 433 MW por 2327 dinheiros
+E3 comprou 240 MW por 1210 dinheiros
+E2 comprou 398 MW por 1768 dinheiros
+E1 comprou 313 MW por 1496 dinheiros
 
 #### Aumentando o problema
 
