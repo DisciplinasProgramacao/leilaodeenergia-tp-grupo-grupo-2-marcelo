@@ -1,0 +1,86 @@
+Resultados do testeCaram.txt
+
+Resultados da Divisão e Conquista
+Valor máximo que pode ser obtido: 26725
+Tempo de execução: 56773416 nanosegundos
+Ofertas selecionadas:
+E15 comprou 387 MW por 1542 dinheiros
+E6 comprou 382 MW por 1498 dinheiros
+E23 comprou 415 MW por 1624 dinheiros
+E20 comprou 393 MW por 1533 dinheiros
+E13 comprou 403 MW por 1568 dinheiros
+E3 comprou 410 MW por 1565 dinheiros
+E18 comprou 397 MW por 1492 dinheiros
+E7 comprou 416 MW por 1540 dinheiros
+E11 comprou 400 MW por 1463 dinheiros
+E4 comprou 385 MW por 1333 dinheiros
+E12 comprou 406 MW por 1353 dinheiros
+E9 comprou 416 MW por 1386 dinheiros
+E24 comprou 387 MW por 1280 dinheiros
+E19 comprou 392 MW por 1293 dinheiros
+E25 comprou 417 MW por 1330 dinheiros
+E22 comprou 403 MW por 1277 dinheiros
+E14 comprou 390 MW por 1228 dinheiros
+E16 comprou 390 MW por 1206 dinheiros
+E5 comprou 399 MW por 1214 dinheiros
+
+
+Resultados da Divisão e Conquista
+Valor máximo que pode ser obtido: 40348
+Tempo de execução: 55461625 nanosegundos
+Ofertas selecionadas:
+E17 comprou 483 MW por 2828 dinheiros
+E22 comprou 363 MW por 2007 dinheiros
+E4 comprou 433 MW por 2327 dinheiros
+E18 comprou 487 MW por 2617 dinheiros
+E24 comprou 589 MW por 3164 dinheiros
+E9 comprou 558 MW por 2983 dinheiros
+E15 comprou 385 MW por 2023 dinheiros
+E13 comprou 213 MW por 1115 dinheiros
+E7 comprou 232 MW por 1209 dinheiros
+E25 comprou 476 MW por 2480 dinheiros
+E20 comprou 358 MW por 1847 dinheiros
+E16 comprou 240 MW por 1234 dinheiros
+E6 comprou 297 MW por 1499 dinheiros
+E3 comprou 240 MW por 1210 dinheiros
+E1 comprou 313 MW por 1496 dinheiros
+E23 comprou 279 MW por 1311 dinheiros
+E10 comprou 495 MW por 2259 dinheiros
+E14 comprou 346 MW por 1552 dinheiros
+E11 comprou 310 MW por 1381 dinheiros
+E2 comprou 398 MW por 1768 dinheiros
+E21 comprou 467 MW por 2038 dinheiros
+
+Média de tempo total de execução: 0.056117520500 segundos
+
+
+Resultados do testBacktracking.txt
+
+Resultados da Divisão e Conquista
+Valor máximo que pode ser obtido: 28567
+Tempo de execução: 110426500 nanosegundos
+Ofertas selecionadas:
+E13 comprou 380 MW por 1643 dinheiros
+E7 comprou 392 MW por 1653 dinheiros
+E3 comprou 398 MW por 1662 dinheiros
+E29 comprou 382 MW por 1540 dinheiros
+E18 comprou 418 MW por 1672 dinheiros
+E31 comprou 431 MW por 1669 dinheiros
+E5 comprou 381 MW por 1447 dinheiros
+E16 comprou 428 MW por 1598 dinheiros
+E19 comprou 397 MW por 1453 dinheiros
+E14 comprou 389 MW por 1407 dinheiros
+E22 comprou 384 MW por 1385 dinheiros
+E26 comprou 408 MW por 1392 dinheiros
+E15 comprou 420 MW por 1390 dinheiros
+E30 comprou 402 MW por 1313 dinheiros
+E28 comprou 402 MW por 1308 dinheiros
+E12 comprou 405 MW por 1316 dinheiros
+E2 comprou 402 MW por 1286 dinheiros
+E4 comprou 391 MW por 1187 dinheiros
+E24 comprou 387 MW por 1107 dinheiros
+E33 comprou 403 MW por 1139 dinheiros
+
+Média de tempo total de execução: 0.110426500000 segundos
+Quantidade de conjuntos de teste: 1
+Quantidade de conjuntos de teste com 10 execuções: 0
