@@ -70,6 +70,15 @@ public class GerenciadorLeilao {
         long tempoTotalExecucao = 0;
         long tempoParcialExecucao = 0;
         int qtdConjuntos = 0;
+        int base;
+        int incremento;
+        if (opcao == 2 || opcao == 5) {
+            base = 10;
+            incremento = 1;
+        } else {
+            base = 33;
+            incremento = 33;
+        }
 
         for (int i = 0; i < LeitorDados.conjuntosTeste.size(); i++) {
             LeitorDados.ConjuntoTeste conjunto = LeitorDados.conjuntosTeste.get(i);
@@ -106,10 +115,11 @@ public class GerenciadorLeilao {
 
             if ((i + 1) % 10 == 0) {
                 double mediaTempoParcialExecucaoEmMilissegundos = ((double) tempoParcialExecucao / 10) / 1_000_000.0;
-                System.out.printf("\n%d Empresas - Média de tempo de execução: %.12f milissegundos\n", (i / 10) + 10, mediaTempoParcialExecucaoEmMilissegundos);
+                System.out.printf("\n%d Empresas - Média de tempo de execução: %.12f milissegundos\n", base, mediaTempoParcialExecucaoEmMilissegundos);
                 // Resetar o tempo parcial para o próximo conjunto de 10 execuções
                 tempoParcialExecucao = 0;
                 qtdConjuntos++;
+                base += incremento;
             }
         }
 
