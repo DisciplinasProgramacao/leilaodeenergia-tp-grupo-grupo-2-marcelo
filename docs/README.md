@@ -136,7 +136,7 @@ Quantidade de Ofertas   | Tempo execução (microsegundos)
 1000                    | 17471
 
 
-### Algoritmo Guloso - Estratégia 1
+### Algoritmo Guloso - Estratégia 1 - Ordenação por maior valor
 
 O algoritmo inicialmente faz o inicio da conta do tempo de execução.
 
@@ -146,8 +146,24 @@ Se a capacidade permitir, a oferta é adicionada à lista ofertasSelecionadas, a
 
 Após percorrer todas as ofertas, o algoritmo registra o tempo final de execução e calcula a diferença para determinar o tempo total de execução. Finalmente, o algoritmo retorna um objeto Resultado que contém o valorTotal, a lista de ofertas selecionadas e o tempo de execução.
 
-![](./imgs/algoritmoGulosoE1.png)
 
+#### Vantagens - Ordenação por maior valor
+- Ao ordenar as ofertas pelo maior valor por megawatt, o algoritmo garante que cada unidade de capacidade seja utilizada da forma mais eficiente possível em termos de valor monetário. Isso significa que as ofertas que proporcionam o maior retorno financeiro para cada megawatt de capacidade são consideradas primeiro.
+
+
+- A abordagem gulosa baseia-se na premissa de fazer a melhor escolha local em cada etapa do processo. Ordenar pelo maior valor por megawatt permite ao algoritmo fazer essas escolhas locais ótimas de maneira direta e imediata.
+
+#### Desvantagens - Ordenação por maior valor
+
+ - Se a distribuição dos valores por megawatt não seguir uma tendência clara, ordenar apenas por esse critério pode não resultar na melhor solução global.
+
+ 
+- Em certos cenários, especialmente quando a relação entre valor e capacidade não é linear, a abordagem gulosa pode resultar em soluções subótimas. Isso ocorre porque a estratégia gulosa não revisa decisões anteriores para garantir a otimalidade global.
+
+#### Tempo de Ordenação 
+- Foi utilizado na ordenação dos dados a estrutura Colelctions.sort, a qual possui, como referência, o algoritmo TimSort. Esse algoritmo  possui estratégia baseada em divisão e conquista, combinado com inserções em busca binária, devido à isso, ele possui complexidade O(n log n).
+
+![](./imgs/algoritmoGulosoE1.png)
 
 ### Algoritmo Guloso - Estratégia 2
 
@@ -156,5 +172,26 @@ Para a segunda estratégia, foi optada a ordenação das ofertas de energia com 
 Para cada oferta na lista ordenada, o algoritmo verifica se a capacidade restante é suficiente para incluir a oferta. Se for, a oferta é adicionada à lista de lances selecionados, a capacidade disponível é reduzida pela quantidade de megawatts da oferta, e o valor total é aumentado pelo valor da oferta. Esse processo continua até que todas as ofertas tenham sido consideradas ou a capacidade esteja esgotada.
 
 Após percorrer todas as ofertas, o algoritmo registra o tempo de fim e calcula o tempo de execução. Finalmente, retorna um objeto Resultado, contendo o valor total acumulado, a lista de ofertas selecionadas e o tempo de execução.
+
+
+#### Vantagens - Ordenação por valor do megawatt, de forma decrescente
+
+- Ordenar as ofertas pelo valor do megawatt em ordem decrescente garante que as ofertas mais valiosas por unidade de capacidade sejam consideradas primeiro. Isso leva à maximização do valor total dentro da capacidade disponível.
+
+
+- A ordenação decrescente permite que o algoritmo guloso faça escolhas imediatas das melhores ofertas disponíveis, resultando em decisões locais ótimas a cada passo.
+
+
+- A ordenação prévia das ofertas por valor do megawatt em ordem decrescente permite que o algoritmo realize a seleção de forma mais eficiente, evitando a necessidade de revisitar ofertas menos valiosas durante a execução.
+
+
+#### Desvantagens - Ordenação por valor do megawatt, de forma decrescente
+
+- Se a distribuição dos valores do megawatt não seguir uma tendência clara de decaimento, a ordenação decrescente pode não garantir a seleção das melhores ofertas em termos de valor total.
+
+- Em certos cenários, a abordagem de ordenação decrescente pode levar a soluções subótimas, especialmente quando a relação entre valor e capacidade não é linear e a ordem de seleção das ofertas é crítica.
+
+#### Tempo de Ordenação
+- Da mesma forma que na estratégia 1, foi utilizada a estrutura Collections Sort, a qual possui como base o algoritmo Tim Sort, que utiliza a estratégia de divisão e conquista e busca binária para realizar a ordenação dos dados. Possui uma complexidade O(n log n).
 
 ![](./imgs/algoritmoGulosoE2.png)
