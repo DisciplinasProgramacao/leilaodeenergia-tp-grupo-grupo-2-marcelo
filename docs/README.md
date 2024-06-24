@@ -326,3 +326,297 @@ Após percorrer todas as ofertas, o algoritmo registra o tempo de fim e calcula 
 - Da mesma forma que na estratégia 1, foi utilizada a estrutura Collections Sort, a qual possui como base o algoritmo Tim Sort, que utiliza a estratégia de divisão e conquista e busca binária para realizar a ordenação dos dados. Possui uma complexidade O(n log n).
 
 ![](./imgs/algoritmoGulosoE2.png)
+
+### Backtracking
+
+Para a solução do problema de leilão de energia utilizando o algoritmo de Backtracking, o método calcular recebe a capacidade total de megawatts e a lista de ofertas como parâmetros. O objetivo é encontrar a combinação de ofertas que maximize o valor total, sem exceder a capacidade disponível.
+
+O algoritmo começa registrando o tempo de início da execução. Em seguida, inicializa um objeto Resultado com valor máximo zero, uma lista vazia de ofertas selecionadas e tempo de execução zero. A função recursiva backtrack é então chamada para iniciar a busca pela melhor combinação de ofertas.
+
+#### Estrutura da Função Backtracking
+
+A função backtrack é responsável por explorar todas as possíveis combinações de ofertas, verificando se cada combinação resulta em um valor total maior que o atualmente armazenado no melhorResultado. A cada chamada recursiva, a função considera adicionar uma nova oferta à lista de selecionadas, verifica se a capacidade permite essa adição, e atualiza o valor e capacidade restantes.
+
+#### Parâmetros da função backtrack:
+
+capacidade: a capacidade restante de megawatts.
+ofertas: a lista de todas as ofertas disponíveis.
+indice: o índice da oferta atual sendo considerada.
+selecionadas: a lista de ofertas selecionadas até o momento.
+valorAtual: o valor total das ofertas selecionadas até o momento.
+melhorResultado: o melhor resultado encontrado até o momento.
+
+#### Procedimento da função backtrack:
+
+Se o valorAtual for maior que o valor máximo armazenado no melhorResultado, atualiza o melhorResultado com o novo valor e a lista de ofertas selecionadas.
+
+Para cada oferta a partir do índice atual, verifica se a oferta pode ser considerada sem exceder a capacidade.
+Se a oferta for considerada, adiciona-a à lista de selecionadas, atualiza a capacidade e o valor atual, e chama a função recursivamente para continuar a busca.
+
+Após explorar a inclusão da oferta, remove-a da lista de selecionadas e restaura a capacidade e o valor atual para considerar outras combinações.
+
+Após completar a busca, o tempo de execução é registrado e atualizado no melhorResultado, que é então retornado.
+
+### Vantagens do Backtracking
+- Exploração Exaustiva: O Backtracking faz uma busca exaustiva e verifica se cada elemento é uma possível solução. Se é, continua e verifica se é uma solução completa, se não, ele retorna e busca outro candidato (poda).
+- Flexibilidade: Pode ser adaptado para incluir podas e otimizações adicionais, como heurísticas que aceleram a busca por soluções viáveis.
+- Simplicidade: A abordagem recursiva é intuitiva e direta de implementar para problemas de combinação e otimização.
+
+### Desvantagens do Backtracking
+- Complexidade Temporal: A abordagem de força bruta pode ser ineficiente para grandes conjuntos de ofertas devido ao crescimento exponencial do espaço de busca.
+- Consumo de Memória: A recursão e a necessidade de armazenar múltiplas combinações podem resultar em alto consumo de memória.
+
+![](./imgs/algoritmoBacktracking.png)
+
+### Resultados
+
+Para os testes, incrementou-se o número de empresas interessadas na base de dados até que o tempo de execução fosse aproximadamente 30 segundos. Para 32 empresas, obteve-se um tempo médio de aproximadamente 25 segundos, enquanto que para 33 empresas, o tempo médio foi de aproximadamente 49 segundos.
+
+Ofertas selecionadas considerando 33 empresas:
+
+#### Conjunto 1:
+##### Valor máximo que pode ser obtido: 29197 dinheiros
+##### Tempo de execução: 49097388292 nanosegundos
+* Ofertas selecionadas: 
+* E1 comprou 393 MW por 1443 dinheiros
+* E2 comprou 383 MW por 1660 dinheiros
+* E3 comprou 399 MW por 1299 dinheiros
+* E4 comprou 402 MW por 1487 dinheiros
+* E5 comprou 380 MW por 1644 dinheiros
+* E6 comprou 387 MW por 1181 dinheiros
+* E7 comprou 410 MW por 1644 dinheiros
+* E9 comprou 423 MW por 1600 dinheiros
+* E10 comprou 399 MW por 1697 dinheiros
+* E12 comprou 424 MW por 1622 dinheiros
+* E15 comprou 425 MW por 1484 dinheiros
+* E16 comprou 390 MW por 1678 dinheiros
+* E17 comprou 387 MW por 1507 dinheiros
+* E19 comprou 406 MW por 1328 dinheiros
+* E20 comprou 412 MW por 1463 dinheiros
+* E22 comprou 409 MW por 1171 dinheiros
+* E23 comprou 392 MW por 1286 dinheiros
+* E29 comprou 396 MW por 1439 dinheiros
+* E32 comprou 390 MW por 1051 dinheiros
+* E33 comprou 391 MW por 1513 dinheiros
+
+#### Conjunto 2:
+##### Valor máximo que pode ser obtido: 29166 dinheiros
+##### Tempo de execução: 48819586000 nanosegundos
+* Ofertas selecionadas: 
+* E2 comprou 419 MW por 1428 dinheiros
+* E6 comprou 383 MW por 1470 dinheiros
+* E8 comprou 392 MW por 1610 dinheiros
+* E9 comprou 389 MW por 1435 dinheiros
+* E10 comprou 399 MW por 1320 dinheiros
+* E12 comprou 393 MW por 1610 dinheiros
+* E14 comprou 389 MW por 1231 dinheiros
+* E15 comprou 397 MW por 1655 dinheiros
+* E16 comprou 388 MW por 1031 dinheiros
+* E17 comprou 431 MW por 1492 dinheiros
+* E18 comprou 386 MW por 1424 dinheiros
+* E21 comprou 388 MW por 1347 dinheiros
+* E24 comprou 416 MW por 1481 dinheiros
+* E25 comprou 385 MW por 1588 dinheiros
+* E27 comprou 410 MW por 1612 dinheiros
+* E28 comprou 404 MW por 1551 dinheiros
+* E30 comprou 415 MW por 1602 dinheiros
+* E31 comprou 396 MW por 1241 dinheiros
+* E32 comprou 396 MW por 1486 dinheiros
+* E33 comprou 422 MW por 1552 dinheiros
+
+#### Conjunto 3:
+##### Valor máximo que pode ser obtido: 28580 dinheiros
+##### Tempo de execução: 49919296708 nanosegundos
+* Ofertas selecionadas: 
+* E2 comprou 389 MW por 1578 dinheiros
+* E4 comprou 422 MW por 1362 dinheiros
+* E7 comprou 434 MW por 1490 dinheiros
+* E8 comprou 396 MW por 1289 dinheiros
+* E9 comprou 394 MW por 1580 dinheiros
+* E10 comprou 430 MW por 1572 dinheiros
+* E11 comprou 399 MW por 1638 dinheiros
+* E13 comprou 431 MW por 1432 dinheiros
+* E15 comprou 410 MW por 1618 dinheiros
+* E18 comprou 394 MW por 1523 dinheiros
+* E19 comprou 398 MW por 1332 dinheiros
+* E20 comprou 414 MW por 1666 dinheiros
+* E21 comprou 417 MW por 1698 dinheiros
+* E22 comprou 417 MW por 1300 dinheiros
+* E25 comprou 437 MW por 1581 dinheiros
+* E26 comprou 427 MW por 1499 dinheiros
+* E28 comprou 426 MW por 1286 dinheiros
+* E31 comprou 436 MW por 1537 dinheiros
+* E32 comprou 440 MW por 1599 dinheiros
+
+#### Conjunto 4:
+##### Valor máximo que pode ser obtido: 28055 dinheiros
+##### Tempo de execução: 49460485959 nanosegundos
+* Ofertas selecionadas: 
+* E1 comprou 380 MW por 1240 dinheiros
+* E5 comprou 400 MW por 1354 dinheiros
+* E6 comprou 398 MW por 1321 dinheiros
+* E7 comprou 387 MW por 1289 dinheiros
+* E8 comprou 388 MW por 1230 dinheiros
+* E10 comprou 412 MW por 1645 dinheiros
+* E11 comprou 415 MW por 1424 dinheiros
+* E12 comprou 385 MW por 1445 dinheiros
+* E14 comprou 409 MW por 1673 dinheiros
+* E15 comprou 423 MW por 1448 dinheiros
+* E17 comprou 395 MW por 1260 dinheiros
+* E18 comprou 413 MW por 1196 dinheiros
+* E23 comprou 432 MW por 1697 dinheiros
+* E24 comprou 392 MW por 1498 dinheiros
+* E25 comprou 388 MW por 1316 dinheiros
+* E26 comprou 433 MW por 1525 dinheiros
+* E27 comprou 389 MW por 1550 dinheiros
+* E28 comprou 386 MW por 1414 dinheiros
+* E29 comprou 381 MW por 1289 dinheiros
+* E33 comprou 389 MW por 1241 dinheiros
+
+#### Conjunto 5:
+##### Valor máximo que pode ser obtido: 29251 dinheiros
+##### Tempo de execução: 49547351375 nanosegundos
+* Ofertas selecionadas: 
+* E1 comprou 425 MW por 1603 dinheiros
+* E3 comprou 437 MW por 1616 dinheiros
+* E5 comprou 410 MW por 1584 dinheiros
+* E6 comprou 399 MW por 1609 dinheiros
+* E7 comprou 390 MW por 1674 dinheiros
+* E8 comprou 386 MW por 1428 dinheiros
+* E9 comprou 382 MW por 1431 dinheiros
+* E10 comprou 426 MW por 1430 dinheiros
+* E11 comprou 396 MW por 1415 dinheiros
+* E12 comprou 439 MW por 1579 dinheiros
+* E13 comprou 383 MW por 1427 dinheiros
+* E14 comprou 427 MW por 1697 dinheiros
+* E16 comprou 392 MW por 1681 dinheiros
+* E20 comprou 389 MW por 1418 dinheiros
+* E22 comprou 429 MW por 1695 dinheiros
+* E23 comprou 440 MW por 1403 dinheiros
+* E27 comprou 425 MW por 1439 dinheiros
+* E32 comprou 395 MW por 1478 dinheiros
+* E33 comprou 397 MW por 1644 dinheiros
+
+#### Conjunto 6:
+##### Valor máximo que pode ser obtido: 28489 dinheiros
+##### Tempo de execução: 49849577958 nanosegundos
+* Ofertas selecionadas: 
+* E3 comprou 432 MW por 1532 dinheiros
+* E4 comprou 420 MW por 1618 dinheiros
+* E5 comprou 413 MW por 1424 dinheiros
+* E8 comprou 391 MW por 1497 dinheiros
+* E9 comprou 419 MW por 1494 dinheiros
+* E10 comprou 429 MW por 1498 dinheiros
+* E14 comprou 434 MW por 1481 dinheiros
+* E15 comprou 417 MW por 1484 dinheiros
+* E17 comprou 416 MW por 1435 dinheiros
+* E19 comprou 428 MW por 1487 dinheiros
+* E20 comprou 404 MW por 1364 dinheiros
+* E21 comprou 411 MW por 1605 dinheiros
+* E24 comprou 425 MW por 1661 dinheiros
+* E25 comprou 399 MW por 1456 dinheiros
+* E26 comprou 408 MW por 1421 dinheiros
+* E29 comprou 382 MW por 1459 dinheiros
+* E30 comprou 433 MW por 1558 dinheiros
+* E31 comprou 422 MW por 1429 dinheiros
+* E33 comprou 384 MW por 1586 dinheiros
+
+#### Conjunto 7:
+##### Valor máximo que pode ser obtido: 29459 dinheiros
+##### Tempo de execução: 48947803000 nanosegundos
+* Ofertas selecionadas: 
+* E1 comprou 417 MW por 1499 dinheiros
+* E2 comprou 425 MW por 1644 dinheiros
+* E4 comprou 408 MW por 1652 dinheiros
+* E5 comprou 404 MW por 1560 dinheiros
+* E7 comprou 403 MW por 1639 dinheiros
+* E10 comprou 437 MW por 1655 dinheiros
+* E13 comprou 396 MW por 1381 dinheiros
+* E16 comprou 388 MW por 1505 dinheiros
+* E17 comprou 415 MW por 1622 dinheiros
+* E19 comprou 434 MW por 1471 dinheiros
+* E21 comprou 384 MW por 1639 dinheiros
+* E23 comprou 392 MW por 1424 dinheiros
+* E24 comprou 417 MW por 1681 dinheiros
+* E25 comprou 432 MW por 1505 dinheiros
+* E27 comprou 383 MW por 1566 dinheiros
+* E28 comprou 428 MW por 1610 dinheiros
+* E30 comprou 402 MW por 1582 dinheiros
+* E32 comprou 409 MW por 1329 dinheiros
+* E33 comprou 426 MW por 1495 dinheiros
+
+#### Conjunto 8:
+##### Valor máximo que pode ser obtido: 28956 dinheiros
+##### Tempo de execução: 51562105708 nanosegundos
+* Ofertas selecionadas: 
+* E1 comprou 380 MW por 1455 dinheiros
+* E3 comprou 419 MW por 1486 dinheiros
+* E4 comprou 388 MW por 1544 dinheiros
+* E5 comprou 394 MW por 1399 dinheiros
+* E6 comprou 420 MW por 1592 dinheiros
+* E7 comprou 382 MW por 1435 dinheiros
+* E8 comprou 389 MW por 1641 dinheiros
+* E9 comprou 403 MW por 1441 dinheiros
+* E11 comprou 430 MW por 1455 dinheiros
+* E14 comprou 429 MW por 1672 dinheiros
+* E15 comprou 390 MW por 1669 dinheiros
+* E19 comprou 424 MW por 1418 dinheiros
+* E20 comprou 420 MW por 1517 dinheiros
+* E21 comprou 410 MW por 1458 dinheiros
+* E23 comprou 382 MW por 1440 dinheiros
+* E28 comprou 426 MW por 1632 dinheiros
+* E30 comprou 434 MW por 1629 dinheiros
+* E31 comprou 427 MW por 1454 dinheiros
+* E33 comprou 439 MW por 1619 dinheiros
+
+#### Conjunto 9:
+##### Valor máximo que pode ser obtido: 28176 dinheiros
+##### Tempo de execução: 49025411584 nanosegundos
+* Ofertas selecionadas: 
+* E3 comprou 411 MW por 1677 dinheiros
+* E5 comprou 428 MW por 1423 dinheiros
+* E6 comprou 389 MW por 1556 dinheiros
+* E7 comprou 439 MW por 1370 dinheiros
+* E8 comprou 406 MW por 1440 dinheiros
+* E9 comprou 387 MW por 1154 dinheiros
+* E10 comprou 390 MW por 1649 dinheiros
+* E11 comprou 382 MW por 1453 dinheiros
+* E12 comprou 404 MW por 1412 dinheiros
+* E14 comprou 388 MW por 1539 dinheiros
+* E15 comprou 389 MW por 1396 dinheiros
+* E17 comprou 402 MW por 1573 dinheiros
+* E18 comprou 398 MW por 1277 dinheiros
+* E20 comprou 391 MW por 1307 dinheiros
+* E21 comprou 398 MW por 1407 dinheiros
+* E24 comprou 394 MW por 1149 dinheiros
+* E27 comprou 431 MW por 1313 dinheiros
+* E28 comprou 391 MW por 1573 dinheiros
+* E31 comprou 385 MW por 1173 dinheiros
+* E33 comprou 395 MW por 1335 dinheiros
+
+#### Conjunto 10:
+##### Valor máximo que pode ser obtido: 28567 dinheiros
+##### Tempo de execução: 49374412542 nanosegundos
+* Ofertas selecionadas: 
+* E2 comprou 402 MW por 1286 dinheiros
+* E3 comprou 398 MW por 1662 dinheiros
+* E4 comprou 391 MW por 1187 dinheiros
+* E5 comprou 381 MW por 1447 dinheiros
+* E7 comprou 392 MW por 1653 dinheiros
+* E12 comprou 405 MW por 1316 dinheiros
+* E13 comprou 380 MW por 1643 dinheiros
+* E14 comprou 389 MW por 1407 dinheiros
+* E15 comprou 420 MW por 1390 dinheiros
+* E16 comprou 428 MW por 1598 dinheiros
+* E18 comprou 418 MW por 1672 dinheiros
+* E19 comprou 397 MW por 1453 dinheiros
+* E22 comprou 384 MW por 1385 dinheiros
+* E24 comprou 387 MW por 1107 dinheiros
+* E26 comprou 408 MW por 1392 dinheiros
+* E28 comprou 402 MW por 1308 dinheiros
+* E29 comprou 382 MW por 1540 dinheiros
+* E30 comprou 402 MW por 1313 dinheiros
+* E31 comprou 431 MW por 1669 dinheiros
+* E33 comprou 403 MW por 1139 dinheiros
+
+33 Empresas - Média de tempo de execução: 49560.341912600000 milissegundos
