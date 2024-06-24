@@ -1,4 +1,4 @@
-package codigo;
+package codigo.algoritmos;
 
 import codigo.entidades.Oferta;
 import codigo.entidades.Resultado;
