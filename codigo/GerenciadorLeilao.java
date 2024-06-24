@@ -10,6 +10,7 @@ public class GerenciadorLeilao {
             long tempoTotalAlgGuloso1   = 0;
             long tempoTotalBacktracking = 0;
 
+            long tempoTotalAlgGuloso2   = 0;
             // Ler os dados do arquivo
             // LeitorDados.lerDados("codigo/dados/db.txt");
             LeitorDados.lerDados("codigo/dados/testBacktracking.txt");
@@ -18,11 +19,11 @@ public class GerenciadorLeilao {
                 LeitorDados.ConjuntoTeste conjunto = LeitorDados.conjuntosTeste.get(i);
 
                 // Executar a programação dinâmica
-                // Resultado programacaoDinamica = ProgramacaoDinamica.calcular(conjunto.capacidadeTotal, conjunto.ofertas);
-                // exibirResultados("Resultados da Programação Dinâmica", programacaoDinamica);
-                // tempoTotalProgDinamica += programacaoDinamica.getTempoExecucao();
+//                // Resultado programacaoDinamica = ProgramacaoDinamica.calcular(conjunto.capacidadeTotal, conjunto.ofertas);
+//                // exibirResultados("Resultados da Programação Dinâmica", programacaoDinamica);
+//                // tempoTotalProgDinamica += programacaoDinamica.getTempoExecucao();
 
-                // Executar o Algoritmo Guloso - Estratégia 1
+                // Executar o Algoritmo Guloso - Estratégia 1 - Ordenando por valores das ofertas de forma decrescente
 //                Resultado algoritmoGuloso1 = AlgoritmoGuloso1.calcular(conjunto.capacidadeTotal, conjunto.ofertas);
 //                exibirResultados("Resultados do Algoritmo Guloso - Estratégia 1", algoritmoGuloso1);
 //                tempoTotalAlgGuloso1 += algoritmoGuloso1.getTempoExecucao();
@@ -31,6 +32,11 @@ public class GerenciadorLeilao {
                 Resultado backtracking = Backtracking.calcular(conjunto.capacidadeTotal, conjunto.ofertas);
                 exibirResultados("Resultados do Algoritmo de Backtracking", backtracking);
                 tempoTotalBacktracking += backtracking.getTempoExecucao();
+
+//                 Executar o Algoritmo Guloso - Estratégia 2 - Ordenando pelo valor do megawatt de forma decrescente
+                Resultado algoritmoGuloso2 = AlgoritmoGuloso2.calcular(conjunto.capacidadeTotal, conjunto.ofertas);
+                exibirResultados("Resultados do Algoritmo Guloso - Estratégia 2", algoritmoGuloso2);
+                tempoTotalAlgGuloso2 += algoritmoGuloso2.getTempoExecucao();
 
             }
             long mediaTempoExecucao = tempoTotalBacktracking / LeitorDados.conjuntosTeste.size();
