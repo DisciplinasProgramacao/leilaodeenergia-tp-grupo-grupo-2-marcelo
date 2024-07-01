@@ -5,122 +5,99 @@ import codigo.entidades.Resultado;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-/**
- * Classe que implementa o algoritmo de Divisão e Conquista com memoização
- * para resolver o problema de maximização de valor das ofertas dentro de uma capacidade total.
- */
 public class DivisaoConquista {
 
-    /**
-     * Método principal para calcular o valor máximo das ofertas selecionadas
-     * que não excedem a capacidade total. Iremos utilizar memoização para evitar recalculações.
-     *
-     * @param capacidadeTotal A capacidade total disponível.
-     * @param ofertas A lista de ofertas disponíveis.
-     * @return Um objeto Resultado contendo o valor máximo, as ofertas selecionadas e o tempo de execução.
-     */
     public static Resultado calcular(int capacidadeTotal, List<Oferta> ofertas) {
-        // Início do tempo de execução
         long inicio = System.nanoTime();
 
-        // Ordenar ofertas pelo valor por megawatt (decrescente)
-        // Está sendo multiplicado por -1 para inverter a ordem
         ofertas.sort(Comparator.comparingDouble(o -> -1.0 * o.getValor() / o.getMegawatts()));
 
-        // Inicializar a lista de ofertas selecionadas
-        List<Oferta> ofertasSelecionadas = new ArrayList<>();
-        // Inicializar o mapa de memoização
-        Map<String, ResultadoParcial> memo = new HashMap<>();
-        // Calcular o valor máximo das ofertas utilizando recursão com memoização
-        int valorMaximo = calcularRecursivo(capacidadeTotal, ofertas, 0, ofertasSelecionadas, memo);
+        // Cria uma cópia da lista de ofertas para usar como lista de ofertas disponíveis
+        List<Oferta> ofertasDisponiveis = new ArrayList<>(ofertas);
 
-        // Fim do tempo de execução
+        Resultado resultado = dEc_leilao(capacidadeTotal, ofertasDisponiveis);
+
         long fim = System.nanoTime();
-        long tempoExecucao = fim - inicio;
+        resultado.setTempoExecucao(fim - inicio);
 
-        // Retornar o resultado final
-        return new Resultado(valorMaximo, ofertasSelecionadas, tempoExecucao);
+        return resultado;
     }
 
-    /**
-     * Método recursivo para calcular o valor máximo das ofertas selecionadas.
-     * Utiliza memoização para evitar recalculações de subproblemas já resolvidos.
-     *
-     * @param capacidadeRestante A capacidade restante disponível.
-     * @param ofertas A lista de ofertas disponíveis.
-     * @param indice O índice atual na lista de ofertas.
-     * @param ofertasSelecionadas A lista de ofertas selecionadas até o momento.
-     * @param memo O mapa de memoização.
-     * @return O valor máximo das ofertas selecionadas.
-     */
-    private static int calcularRecursivo(int capacidadeRestante, List<Oferta> ofertas, int indice, List<Oferta> ofertasSelecionadas, Map<String, ResultadoParcial> memo) {
-        // Caso base: sem capacidade restante ou sem ofertas
-        if (capacidadeRestante <= 0 || indice >= ofertas.size()) {
-            return 0;
+    public static Resultado dEc_leilao(int capacidadeTotal, List<Oferta> ofertasDisponiveis) {
+        if (capacidadeTotal < ofertasDisponiveis.stream().mapToInt(Oferta::getMegawatts).min().orElse(0)) {
+            Oferta melhorOferta = calcularForcaBruta(capacidadeTotal, ofertasDisponiveis);
+            Resultado resultado = new Resultado();
+            if (melhorOferta != null) {
+                resultado.adicionarOferta(melhorOferta);
+                ofertasDisponiveis.remove(melhorOferta);  // Remove a oferta da lista de ofertas disponíveis
+            }
+            return resultado;
         }
 
-        // Chave para memoização
-        String chave = capacidadeRestante + "-" + indice;
+        int quant = capacidadeTotal / 2;
 
-        // Verificar se já temos o resultado memoizado
-        if (memo.containsKey(chave)) {
-            ResultadoParcial resultadoParcial = memo.get(chave);
-            ofertasSelecionadas.clear();
-            ofertasSelecionadas.addAll(resultadoParcial.ofertasSelecionadas);
-            return resultadoParcial.valor;
-        }
-
-        // Obter a oferta atual
-        Oferta ofertaAtual = ofertas.get(indice);
-
-        // Listas para armazenar as ofertas selecionadas em ambos os cenários
-        List<Oferta> ofertasComAtual = new ArrayList<>(ofertasSelecionadas);
-        int valorComAtual = 0;
-        // Caso a oferta atual possa ser incluída (não ultrapassa a capacidade restante)
-        if (ofertaAtual.getMegawatts() <= capacidadeRestante) {
-            ofertasComAtual.add(ofertaAtual);
-            valorComAtual = ofertaAtual.getValor() + calcularRecursivo(capacidadeRestante - ofertaAtual.getMegawatts(), ofertas, indice + 1, ofertasComAtual, memo);
-        }
-
-        // Valor sem incluir a oferta atual
-        List<Oferta> ofertasSemAtual = new ArrayList<>(ofertasSelecionadas);
-        int valorSemAtual = calcularRecursivo(capacidadeRestante, ofertas, indice + 1, ofertasSemAtual, memo);
-
-        // Selecionar a opção com maior valor
-        int valorMaximo;
-        List<Oferta> melhoresOfertas;
-        if (valorComAtual > valorSemAtual) {
-            ofertasSelecionadas.clear();
-            ofertasSelecionadas.addAll(ofertasComAtual);
-            valorMaximo = valorComAtual;
-            melhoresOfertas = ofertasComAtual;
-        } else {
-            ofertasSelecionadas.clear();
-            ofertasSelecionadas.addAll(ofertasSemAtual);
-            valorMaximo = valorSemAtual;
-            melhoresOfertas = ofertasSemAtual;
-        }
-
-        // Armazenar o resultado memoizado
-        memo.put(chave, new ResultadoParcial(valorMaximo, melhoresOfertas));
-
-        return valorMaximo;
+        Resultado listaEsquerda = dEc_leilao(quant, ofertasDisponiveis);
+        quant += capacidadeTotal % 2;
+        Resultado listaDireita = dEc_leilao(quant, ofertasDisponiveis);
+        return combinar(listaEsquerda, listaDireita, capacidadeTotal, ofertasDisponiveis);
     }
 
-    /**
-     * Classe auxiliar para armazenar o resultado parcial de um subproblema.
-     */
-    private static class ResultadoParcial {
-        int valor;
-        List<Oferta> ofertasSelecionadas;
-
-        ResultadoParcial(int valor, List<Oferta> ofertasSelecionadas) {
-            this.valor = valor;
-            this.ofertasSelecionadas = new ArrayList<>(ofertasSelecionadas);
+    public static Resultado combinar(Resultado listaEsquerda, Resultado listaDireita, int capacidadeTotal, List<Oferta> ofertas) {
+        List<Oferta> ofertasSelecionadas = new ArrayList<>(listaEsquerda.getOfertasSelecionadas());
+        for (Oferta oferta : listaDireita.getOfertasSelecionadas()) {
+            if (!ofertasSelecionadas.contains(oferta)) {
+                ofertasSelecionadas.add(oferta);
+            }
         }
+
+        Resultado solucao = new Resultado();
+        solucao.setOfertasSelecionadas(ofertasSelecionadas);
+
+        List<Oferta> ofertaNaoSelecionadas = new ArrayList<>(ofertas);
+        ofertaNaoSelecionadas.removeAll(ofertasSelecionadas);
+
+        int capacidadeRestante = capacidadeTotal - ofertasSelecionadas.stream().mapToInt(Oferta::getMegawatts).sum();
+
+        for (Oferta oferta : ofertaNaoSelecionadas) {
+            if (oferta.getMegawatts() <= capacidadeRestante) {
+                solucao.getOfertasSelecionadas().add(oferta);
+                capacidadeRestante -= oferta.getMegawatts();
+            }
+        }
+
+        for (Oferta ofertaNaoSelecionada : ofertaNaoSelecionadas) {
+            for (Oferta ofertaSelecionada : new ArrayList<>(solucao.getOfertasSelecionadas())) {
+                if (ofertaNaoSelecionada.getMegawatts() <= (capacidadeRestante + ofertaSelecionada.getMegawatts())) {
+                    double valorSelecionada = (double) ofertaSelecionada.getValor() / ofertaSelecionada.getMegawatts();
+                    double valorNaoSelecionada = (double) ofertaNaoSelecionada.getValor() / ofertaNaoSelecionada.getMegawatts();
+                    if (valorNaoSelecionada > valorSelecionada) {
+                        solucao.getOfertasSelecionadas().remove(ofertaSelecionada);
+                        solucao.getOfertasSelecionadas().add(ofertaNaoSelecionada);
+                        capacidadeRestante += ofertaSelecionada.getMegawatts() - ofertaNaoSelecionada.getMegawatts();
+                    }
+                }
+            }
+        }
+
+        return solucao;
+    }
+
+    public static Oferta calcularForcaBruta(int capacidade, List<Oferta> ofertas) {
+        Oferta melhorOferta = null;
+        double melhorValorPorMegawatt = 0;
+
+        for (Oferta oferta : ofertas) {
+            if (oferta.getMegawatts() <= capacidade) {
+                double valorPorMegawatt = (double) oferta.getValor() / oferta.getMegawatts();
+                if (melhorOferta == null || valorPorMegawatt > melhorValorPorMegawatt) {
+                    melhorOferta = oferta;
+                    melhorValorPorMegawatt = valorPorMegawatt;
+                }
+            }
+        }
+
+        return melhorOferta;
     }
 }
