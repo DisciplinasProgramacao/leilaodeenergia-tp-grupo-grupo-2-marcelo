@@ -14,7 +14,6 @@ public class DivisaoConquista {
 
         ofertas.sort(Comparator.comparingDouble(o -> -1.0 * o.getValor() / o.getMegawatts()));
 
-        // Cria uma cópia da lista de ofertas para usar como lista de ofertas disponíveis
         List<Oferta> ofertasDisponiveis = new ArrayList<>(ofertas);
 
         Resultado resultado = dEc_leilao(capacidadeTotal, ofertasDisponiveis);
@@ -31,7 +30,7 @@ public class DivisaoConquista {
             Resultado resultado = new Resultado();
             if (melhorOferta != null) {
                 resultado.adicionarOferta(melhorOferta);
-                ofertasDisponiveis.remove(melhorOferta);  // Remove a oferta da lista de ofertas disponíveis
+                ofertasDisponiveis.remove(melhorOferta);
             }
             return resultado;
         }
