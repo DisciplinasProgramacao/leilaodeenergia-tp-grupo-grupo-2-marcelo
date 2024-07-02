@@ -1,9 +1,11 @@
 package codigo.entidades;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Resultado {
     private int valorMaximo;
+    private int energiaUsada;
     private List<Oferta> ofertasSelecionadas;
     private long tempoExecucao;
 
@@ -13,11 +15,17 @@ public class Resultado {
         this.tempoExecucao = tempoExecucao;
     }
 
-    public Resultado(int valorMaximo, List<Oferta> ofertasSelecionadas) {
-        this.valorMaximo = valorMaximo;
-        this.ofertasSelecionadas = ofertasSelecionadas;
+    public Resultado() {
+        this.ofertasSelecionadas = new ArrayList<>();
     }
 
+    public int getEnergiaUsada() {
+        return energiaUsada;
+    }
+
+    public void setEnergiaUsada(int energiaUsada) {
+        this.energiaUsada = energiaUsada;
+    }
 
     public int getValorMaximo() {
         return valorMaximo;
@@ -41,5 +49,27 @@ public class Resultado {
 
     public void setTempoExecucao(long tempoExecucao) {
         this.tempoExecucao = tempoExecucao;
+    }
+
+    public void adicionarOferta(Oferta oferta) {
+        this.ofertasSelecionadas.add(oferta);
+        this.energiaUsada += oferta.getMegawatts();
+        this.valorMaximo += oferta.getValor();
+    }
+
+    public void removerOferta(Oferta oferta) {
+        this.ofertasSelecionadas.remove(oferta);
+        this.energiaUsada -= oferta.getMegawatts();
+        this.valorMaximo -= oferta.getValor();
+    }
+
+    @Override
+    public String toString() {
+        return "Resultado{" +
+                "valorMaximo=" + valorMaximo +
+                ", energiaUsada=" + energiaUsada +
+                ", ofertasSelecionadas=" + ofertasSelecionadas +
+                ", tempoExecucao=" + tempoExecucao +
+                '}';
     }
 }
